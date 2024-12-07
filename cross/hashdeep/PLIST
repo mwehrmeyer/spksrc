@@ -1,0 +1,6 @@
+bin:bin/hashdeep
+bin:bin/md5deep
+bin:bin/sha1deep
+bin:bin/sha256deep
+bin:bin/tigerdeep
+bin:bin/whirlpooldeep
