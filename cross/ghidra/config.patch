@@ -1,0 +1,11 @@
+--- support/launch.sh	2024-03-26 21:43:26.907643300 +0100
++++ modifiedLaunch.sh	2024-03-26 21:42:47.200680793 +0100
+@@ -106,7 +106,7 @@
+ 
+ 	# Production Environment
+ 	INSTALL_DIR="${SUPPORT_DIR}/.."
+-	CPATH="${INSTALL_DIR}/Ghidra/Framework/Utility/lib/Utility.jar"
++	CPATH="${INSTALL_DIR}/Ghidra/Framework/Utility/lib/Utility.jar:${INSTALL_DIR}/Ghidra/Framework/Generic/lib/"
+ 	LS_CPATH="${SUPPORT_DIR}/LaunchSupport.jar"
+ 	DEBUG_LOG4J="${SUPPORT_DIR}/debug.log4j.xml"
+ else

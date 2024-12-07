@@ -1,0 +1,30 @@
+[
+  {
+    "step_title": "Ghidra Configuration",
+    "items": [
+      {
+        "type": "textfield",
+        "desc": "Please specify a shared folder for this package. This share is created at installation when it does not already exist.",
+        "subitems": [
+          {
+            "key": "ghidra_share",
+            "desc": "Share for Ghidra repositories",
+            "defaultValue": "ghidraRepos",
+            "validator": {
+              "allowBlank": false,
+              "regex": {
+                "expr": "/^[\\w _-]+$/",
+                "errorText": "Subdirectories are not supported."              }
+            }
+          }
+        ]
+      }, {
+        "desc": ""
+      }, {
+        "desc": "If you let the installer create the shared folder, it is created under the same volume as the package is installed.<br/>If you want to use a different volume for the share, you must create the shared folder in DSM Control Panel before, and enter the name of the existing share in the field above."
+      }, {
+        "desc": ""
+      }
+    ]
+  }
+]

@@ -1,0 +1,53 @@
+[{
+    "step_title": "Folder configuration",
+    "items": [{
+        "type": "combobox",
+        "desc": "Please select a volume for the shared folder",
+        "subitems": [{
+            "key": "ghidra_volume",
+            "desc": "volume name",
+            "displayField": "display_name",
+            "valueField": "volume_path",
+            "editable": false,
+            "mode": "remote",
+            "api_store": {
+              "api": "SYNO.Core.Storage.Volume",
+              "method": "list",
+              "version": 1,
+              "baseParams": {
+                "limit": -1,
+                "offset": 0,
+                "location": "internal"
+              },
+              "root": "volumes",
+              "idProperty": "volume_path",
+              "fields": [
+                "display_name",
+                "volume_path"
+              ]
+            },
+            "validator": {
+              "fn": "{console.log(arguments);return true;}"
+            }
+          }
+        ]
+      }, {
+        "type": "textfield",
+        "desc": "Shared folder (using the volume chosen above)",
+        "subitems": [{
+            "key": "ghidra_repositories_share",
+            "desc": "Repositories share",
+            "defaultValue": "ghidraRepos",
+            "validator": {
+              "allowBlank": true,
+              "regex": {
+                "expr": "/^[\\w _-]+$/",
+                "errorText": "Subdirectories are not supported."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

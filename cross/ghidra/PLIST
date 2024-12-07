@@ -1,0 +1,16 @@
+rsc:server/*
+rsc:support/LaunchSupport.jar
+rsc:support/launch.properties
+rsc:support/launch.sh
+rsc:Ghidra/application.properties
+rsc:Ghidra/Framework/DB/Module.manifest
+rsc:Ghidra/Framework/DB/lib/*.jar
+rsc:Ghidra/Framework/Docking/lib/*.jar
+rsc:Ghidra/Framework/FileSystem/Module.manifest
+rsc:Ghidra/Framework/FileSystem/lib/*.jar
+rsc:Ghidra/Framework/Generic/Module.manifest
+rsc:Ghidra/Framework/Generic/lib/*.jar
+rsc:Ghidra/Framework/Gui/lib/*.jar
+rsc:Ghidra/Framework/Help/lib/*.jar
+rsc:Ghidra/Framework/Utility/lib/*.jar
+rsc:Ghidra/Features/GhidraServer/*
