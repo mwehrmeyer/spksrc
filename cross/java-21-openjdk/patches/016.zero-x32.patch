@@ -1,0 +1,14 @@
+diff --color -aur a/make/autoconf/platform.m4 b/make/autoconf/platform.m4
+--- a/make/autoconf/platform.m4	2024-12-04 02:02:53.000000000 +0100
++++ b/make/autoconf/platform.m4	2024-12-05 13:17:37.526172912 +0100
+@@ -41,6 +41,10 @@
+       VAR_CPU_ARCH=x86
+       VAR_CPU_BITS=64
+       VAR_CPU_ENDIAN=little
++      case "$host" in *x32)
++        VAR_CPU=x32
++        VAR_CPU_BITS=32
++      esac
+       ;;
+     i?86)
+       VAR_CPU=x86

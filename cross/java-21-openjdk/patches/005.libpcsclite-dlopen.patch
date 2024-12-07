@@ -1,0 +1,57 @@
+diff --color -aur a/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java b/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java
+--- a/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java	2024-12-04 02:02:53.000000000 +0100
++++ b/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java	2024-12-05 09:42:40.953158010 +0100
+@@ -49,7 +49,8 @@
+ 
+     // The architecture templates are for Debian-based systems: https://wiki.debian.org/Multiarch/Tuples
+     // 32-bit arm differs from the pattern of the rest and has to be specified explicitly
+-    private static final String[] LIB_TEMPLATES = { "/usr/$LIBISA/libpcsclite.so",
++    private static final String[] LIB_TEMPLATES = { "libpcsclite.so.1",
++                                                    "/usr/$LIBISA/libpcsclite.so",
+                                                     "/usr/local/$LIBISA/libpcsclite.so",
+                                                     "/usr/lib/$ARCH-linux-gnu/libpcsclite.so",
+                                                     "/usr/lib/arm-linux-gnueabi/libpcsclite.so",
+@@ -121,42 +122,7 @@
+             return lib;
+         }
+ 
+-        for (String template : LIB_TEMPLATES) {
+-            for (String suffix : LIB_SUFFIXES) {
+-                lib = expand(template) + suffix;
+-                if (debug != null) {
+-                    debug.println("Looking for " + lib);
+-                }
+-                if (new File(lib).isFile()) {
+-                    // if library exists, use that
+-                    return lib;
+-                }
+-            }
+-        }
+-
+-        // As of macos 11, framework libraries have been removed from the file
+-        // system, but in such a way that they can still be dlopen()ed, even
+-        // though they can no longer be open()ed.
+-        //
+-        // https://developer.apple.com/documentation/macos-release-notes/macos-big-sur-11_0_1-release-notes
+-        //
+-        // """New in macOS Big Sur 11.0.1, the system ships with a built-in
+-        // dynamic linker cache of all system-provided libraries. As part of
+-        // this change, copies of dynamic libraries are no longer present on
+-        // the filesystem. Code that attempts to check for dynamic library
+-        // presence by looking for a file at a path or enumerating a directory
+-        // will fail. Instead, check for library presence by attempting to
+-        // dlopen() the path, which will correctly check for the library in the
+-        // cache."""
+-        //
+-        // The directory structure remains otherwise intact, so check for
+-        // existence of the containing directory instead of the file.
+-        lib = PCSC_FRAMEWORK;
+-        if (new File(lib).getParentFile().isDirectory()) {
+-            // if PCSC.framework exists, use that
+-            return lib;
+-        }
+-        throw new IOException("No PC/SC library found on this system");
++        return LIB_TEMPLATES[0];
+     }
+ 
+     private static native void initialize(String libraryName);

@@ -1,0 +1,54 @@
+diff --color -aur a/make/autoconf/lib-tests.m4 b/make/autoconf/lib-tests.m4
+--- a/make/autoconf/lib-tests.m4	2024-12-04 02:02:53.000000000 +0100
++++ b/make/autoconf/lib-tests.m4	2024-12-05 11:47:55.126306021 +0100
+@@ -173,7 +173,7 @@
+       AC_MSG_ERROR([jtreg home directory from --with-jtreg=$with_jtreg does not exist])
+     fi
+ 
+-    if test ! -e "$JT_HOME/lib/jtreg.jar"; then
++    if test ! -e "$JT_HOME/lib/jtreg.jar" && test ! -e "$JT_HOME/share/java/jtreg.jar"; then
+       AC_MSG_ERROR([jtreg home directory from --with-jtreg=$with_jtreg is not a valid jtreg home])
+     fi
+ 
+@@ -187,7 +187,7 @@
+         AC_MSG_WARN([Ignoring JT_HOME pointing to invalid directory: $JT_HOME])
+         JT_HOME=
+       else
+-        if test ! -e "$JT_HOME/lib/jtreg.jar"; then
++        if test ! -e "$JT_HOME/lib/jtreg.jar" && test ! -e "$JT_HOME/share/java/jtreg.jar"; then
+           AC_MSG_WARN([Ignoring JT_HOME which is not a valid jtreg home: $JT_HOME])
+           JT_HOME=
+         else
+@@ -203,7 +203,7 @@
+       if test "x$JTREGEXE" != x; then
+         # That's good, now try to derive JT_HOME
+         JT_HOME=`(cd $($DIRNAME $JTREGEXE)/.. && pwd)`
+-        if test ! -e "$JT_HOME/lib/jtreg.jar"; then
++        if test ! -e "$JT_HOME/lib/jtreg.jar" && test ! -e "$JT_HOME/share/java/jtreg.jar"; then
+           AC_MSG_WARN([Ignoring jtreg from path since a valid jtreg home cannot be found])
+           JT_HOME=
+         else
+diff --color -aur a/make/RunTests.gmk b/make/RunTests.gmk
+--- a/make/RunTests.gmk	2024-12-04 02:02:53.000000000 +0100
++++ b/make/RunTests.gmk	2024-12-05 11:30:50.362998166 +0100
+@@ -897,7 +897,7 @@
+ 
+   $1_COMMAND_LINE := \
+       $$(JTREG_JAVA) $$($1_JTREG_LAUNCHER_OPTIONS) \
+-          -Dprogram=jtreg -jar $$(JT_HOME)/lib/jtreg.jar \
++          -Dprogram=jtreg -jar $$(if $$(wildcard $$(JT_HOME)/lib/jtreg.jar),$$(JT_HOME)/lib/jtreg.jar,$$(JT_HOME)/share/java/jtreg.jar) \
+           $$($1_JTREG_BASIC_OPTIONS) \
+           -testjdk:$$(JDK_UNDER_TEST) \
+           -dir:$$(JTREG_TOPDIR) \
+diff --color -aur a/make/test/BuildFailureHandler.gmk b/make/test/BuildFailureHandler.gmk
+--- a/make/test/BuildFailureHandler.gmk	2024-12-04 02:02:53.000000000 +0100
++++ b/make/test/BuildFailureHandler.gmk	2024-12-05 11:31:33.119663775 +0100
+@@ -38,7 +38,7 @@
+ FH_SUPPORT := $(SUPPORT_OUTPUTDIR)/test/failure_handler
+ FH_JAR := $(FH_SUPPORT)/jtregFailureHandler.jar
+ 
+-JTREG_JAR := $(JT_HOME)/lib/jtreg.jar
++JTREG_JAR := $(if $(wildcard $(JT_HOME)/lib/jtreg.jar),$(JT_HOME)/lib/jtreg.jar,$(JT_HOME)/share/java/jtreg.jar)
+ ifeq ($(wildcard $(JTREG_JAR)), )
+   $(error Cannot build failure handler without jtreg)
+ endif

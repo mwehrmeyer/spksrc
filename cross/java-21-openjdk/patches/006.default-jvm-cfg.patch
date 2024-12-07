@@ -1,0 +1,24 @@
+diff --color -aur a/src/java.base/share/native/libjli/java.c b/src/java.base/share/native/libjli/java.c
+--- a/src/java.base/share/native/libjli/java.c	2024-12-04 02:02:53.000000000 +0100
++++ b/src/java.base/share/native/libjli/java.c	2024-12-05 09:48:13.673150014 +0100
+@@ -2047,7 +2047,7 @@
+ ReadKnownVMs(const char *jvmCfgName, jboolean speculative)
+ {
+     FILE *jvmCfg;
+-    char line[MAXPATHLEN+20];
++    char line[MAXPATHLEN+30];
+     int cnt = 0;
+     int lineno = 0;
+     jlong start = 0, end = 0;
+@@ -2061,6 +2061,11 @@
+ 
+     jvmCfg = fopen(jvmCfgName, "r");
+     if (jvmCfg == NULL) {
++        char cfgName[strlen(jvmCfgName)+10];
++        sprintf(cfgName, "%s-default", jvmCfgName);
++        jvmCfg = fopen(cfgName, "r");
++    }
++    if (jvmCfg == NULL) {
+       if (!speculative) {
+         JLI_ReportErrorMessage(CFG_ERROR6, jvmCfgName);
+         exit(1);

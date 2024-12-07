@@ -1,0 +1,12 @@
+diff --color -Naur a/make/jdk/src/classes/build/tools/generatecharacter/GenerateCharacter.java b/make/jdk/src/classes/build/tools/generatecharacter/GenerateCharacter.java
+--- a/make/jdk/src/classes/build/tools/generatecharacter/GenerateCharacter.java	2024-12-04 02:02:53.000000000 +0100
++++ b/make/jdk/src/classes/build/tools/generatecharacter/GenerateCharacter.java	2024-12-06 08:38:25.236575419 +0100
+@@ -1810,7 +1810,7 @@
+         }
+         commentStart = (Csyntax ? "/*" : "//");
+         commentEnd = (Csyntax ? " */" : "");
+-        commandLineDescription = desc.toString().replace("\\", "\\\\");
++        commandLineDescription = desc.toString().replace("\\", "\\\\").replace(System.getProperty("user.dir").replace("make/gensrc", ""), "");
+     }
+ 
+     private static void searchBins(long[] map, int binsOccupied) throws Exception {

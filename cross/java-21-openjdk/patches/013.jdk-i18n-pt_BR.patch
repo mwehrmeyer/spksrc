@@ -1,0 +1,12 @@
+diff --color -aur a/src/java.desktop/share/classes/sun/awt/resources/awt_pt_BR.properties b/src/java.desktop/share/classes/sun/awt/resources/awt_pt_BR.properties
+--- a/src/java.desktop/share/classes/sun/awt/resources/awt_pt_BR.properties	2024-12-04 02:02:53.000000000 +0100
++++ b/src/java.desktop/share/classes/sun/awt/resources/awt_pt_BR.properties	2024-12-05 11:54:27.412962884 +0100
+@@ -38,7 +38,7 @@
+ # Key names
+ AWT.enter=Enter
+ AWT.backSpace=Backspace
+-AWT.tab=Guia
++AWT.tab=Tab
+ AWT.cancel=Cancelar
+ AWT.clear=Limpar
+ AWT.pause=Pausar

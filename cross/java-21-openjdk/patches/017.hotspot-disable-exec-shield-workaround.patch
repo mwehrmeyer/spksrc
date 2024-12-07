@@ -1,0 +1,12 @@
+diff --color -aur a/src/hotspot/os/linux/os_linux.cpp b/src/hotspot/os/linux/os_linux.cpp
+--- a/src/hotspot/os/linux/os_linux.cpp	2024-12-04 02:02:53.000000000 +0100
++++ b/src/hotspot/os/linux/os_linux.cpp	2024-12-05 13:25:58.172827554 +0100
+@@ -4575,7 +4575,7 @@
+   }
+ }
+ 
+-#if defined(IA32) && !defined(ZERO)
++#if 0
+ /*
+  * Work-around (execute code at a high address) for broken NX emulation using CS limit,
+  * Red Hat patch "Exec-Shield" (IA32 only).

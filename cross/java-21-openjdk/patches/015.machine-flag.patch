@@ -1,0 +1,11 @@
+diff --color -aur a/make/autoconf/flags.m4 b/make/autoconf/flags.m4
+--- a/make/autoconf/flags.m4	2024-12-04 02:02:53.000000000 +0100
++++ b/make/autoconf/flags.m4	2024-12-05 13:13:48.282845089 +0100
+@@ -276,6 +276,7 @@
+         test "x$OPENJDK_TARGET_CPU_ARCH" = xppc; then
+       MACHINE_FLAG="-m${OPENJDK_TARGET_CPU_BITS}"
+     fi
++    case "$host" in *x32) MACHINE_FLAG=;; esac
+   fi
+ 
+   if test "x$OPENJDK_TARGET_OS" = xmacosx; then

@@ -1,0 +1,11 @@
+diff --color -aur a/src/java.base/share/conf/security/java.security b/src/java.base/share/conf/security/java.security
+--- a/src/java.base/share/conf/security/java.security	2024-12-04 02:02:53.000000000 +0100
++++ b/src/java.base/share/conf/security/java.security	2024-12-05 13:28:47.846156812 +0100
+@@ -313,6 +313,7 @@
+ #
+ package.access=sun.misc.,\
+                sun.reflect.,\
++               org.GNOME.Accessibility.,\
+ 
+ #
+ # List of comma-separated packages that start with or equal this string

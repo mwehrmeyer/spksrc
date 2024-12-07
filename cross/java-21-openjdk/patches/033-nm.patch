@@ -1,0 +1,12 @@
+diff --color -Naur a/make/hotspot/lib/JvmMapfile.gmk b/make/hotspot/lib/JvmMapfile.gmk
+--- a/make/hotspot/lib/JvmMapfile.gmk	2024-12-04 02:02:53.000000000 +0100
++++ b/make/hotspot/lib/JvmMapfile.gmk	2024-12-06 13:34:43.789477223 +0100
+@@ -23,6 +23,8 @@
+ # questions.
+ #
+ 
++NM = /usr/bin/nm 
++
+ $(eval $(call IncludeCustomExtension, hotspot/lib/JvmMapfile.gmk))
+ 
+ ################################################################################

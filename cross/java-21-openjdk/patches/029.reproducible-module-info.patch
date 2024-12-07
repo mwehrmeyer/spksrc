@@ -1,0 +1,16 @@
+diff --color -Naur a/make/jdk/src/classes/build/tools/module/GenModuleInfoSource.java b/make/jdk/src/classes/build/tools/module/GenModuleInfoSource.java
+--- a/make/jdk/src/classes/build/tools/module/GenModuleInfoSource.java	2024-12-04 02:02:53.000000000 +0100
++++ b/make/jdk/src/classes/build/tools/module/GenModuleInfoSource.java	2024-12-06 08:40:12.759906173 +0100
+@@ -156,9 +156,10 @@
+                 if (l.trim().startsWith("module ")) {
+                     if (debug) {
+                         // print URI rather than file path to avoid escape
+-                        writer.format("    // source file: %s%n", sourceFile.toUri());
++                        String buildPath = System.getProperty("user.dir").replaceAll("make$", "");
++                        writer.format("    // source file: %s%n", sourceFile.toUri().toString().replace(buildPath, ""));
+                         for (Path file : extraFiles) {
+-                            writer.format("    //              %s%n", file.toUri());
++                            writer.format("    //              %s%n", file.toUri().toString().replace(buildPath, ""));
+                         }
+                     }
+                     break;

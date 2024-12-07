@@ -1,0 +1,22 @@
+diff --color -Naur a/src/java.desktop/share/classes/java/awt/Toolkit.java b/src/java.desktop/share/classes/java/awt/Toolkit.java
+--- a/src/java.desktop/share/classes/java/awt/Toolkit.java	2024-12-04 02:02:53.000000000 +0100
++++ b/src/java.desktop/share/classes/java/awt/Toolkit.java	2024-12-06 08:34:41.806580782 +0100
+@@ -594,11 +594,15 @@
+         if (toolkit == null) {
+             toolkit = PlatformGraphicsInfo.createToolkit();
+             if (GraphicsEnvironment.isHeadless() &&
+-                !(toolkit instanceof HeadlessToolkit)) {
++                    !(toolkit instanceof HeadlessToolkit)) {
+                 toolkit = new HeadlessToolkit(toolkit);
+-            }
++                    }
+             if (!GraphicsEnvironment.isHeadless()) {
+-                loadAssistiveTechnologies();
++                try {
++                    loadAssistiveTechnologies();
++                } catch (java.awt.AWTError e) {
++                    // too bad
++                }
+             }
+         }
+         return toolkit;

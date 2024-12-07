@@ -1,0 +1,11 @@
+diff --color -Naur a/make/Main.gmk b/make/Main.gmk
+--- a/make/Main.gmk	2024-12-04 02:02:53.000000000 +0100
++++ b/make/Main.gmk	2024-12-05 21:21:08.692141485 +0100
+@@ -1285,6 +1285,7 @@
+ 
+ # Aliases used for running tests.
+ 
++$(call PrintVar, ALL_NAMED_TESTS)
+ # Let "run-test" be an alias for "test"
+ $(foreach t, $(ALL_NAMED_TESTS), $(eval run-test-$t: test-$t))
+ RUN_TEST_TARGETS := $(addprefix run-test-, $(ALL_NAMED_TESTS))

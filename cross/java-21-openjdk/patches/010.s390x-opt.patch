@@ -1,0 +1,13 @@
+diff --color -aur a/make/autoconf/flags-cflags.m4 b/make/autoconf/flags-cflags.m4
+--- a/make/autoconf/flags-cflags.m4	2024-12-04 02:02:53.000000000 +0100
++++ b/make/autoconf/flags-cflags.m4	2024-12-05 10:26:30.906428218 +0100
+@@ -821,6 +821,9 @@
+       fi
+     elif test "x$FLAGS_CPU" = xs390x; then
+       $1_CFLAGS_CPU="-mbackchain -march=z10"
++      if test "x$VENDOR_FLAGS_CPU" != x; then
++        $1_CFLAGS_CPU="-mbackchain $VENDOR_FLAGS_CPU"
++      fi
+     fi
+ 
+     if test "x$FLAGS_CPU_ARCH" != xarm &&  test "x$FLAGS_CPU_ARCH" != xppc; then

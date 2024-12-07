@@ -1,0 +1,29 @@
+diff --color -Naur a/make/autoconf/build-aux/config.guess b/make/autoconf/build-aux/config.guess
+--- a/make/autoconf/build-aux/config.guess	2024-12-04 02:02:53.000000000 +0100
++++ b/make/autoconf/build-aux/config.guess	2024-12-06 08:43:27.096568176 +0100
+@@ -28,6 +28,13 @@
+ # autoconf system (which might easily get lost in a future update), we wrap it
+ # and fix the broken property, if needed.
+ 
++machine=`(uname -m) 2>/dev/null` || UNAME_MACHINE=unknown
++if test $machine = riscv64; then
++  # This is all we need to know for riscv64
++  echo riscv64-unknown-linux-gnu
++  exit
++fi
++
+ DIR=`dirname $0`
+ OUT=`. $DIR/autoconf-config.guess 2> /dev/null`
+ 
+diff --color -Naur a/src/hotspot/os/linux/os_linux.cpp b/src/hotspot/os/linux/os_linux.cpp
+--- a/src/hotspot/os/linux/os_linux.cpp	2024-12-04 02:02:53.000000000 +0100
++++ b/src/hotspot/os/linux/os_linux.cpp	2024-12-06 09:03:42.553205752 +0100
+@@ -2588,6 +2588,8 @@
+ #elif defined(PPC)
+   strncpy(cpuinfo, "PPC64", length);
+ #elif defined(RISCV)
++  strncpy(cpuinfo, "RISCV", length);
++#elif defined(RISCV)
+   strncpy(cpuinfo, LP64_ONLY("RISCV64") NOT_LP64("RISCV32"), length);
+ #elif defined(S390)
+   strncpy(cpuinfo, "S390", length);
