@@ -3,12 +3,12 @@ SHELL=/bin/bash
 BASE_NAME = ghidra
 
 PKG_NAME = $(BASE_NAME)Server
-PKG_VERS = 11.2.1
-PKG_DATE = 20241204
+PKG_VERS = 11.3.1
+PKG_DATE = 20250219
 PKG_EXT = zip
-PKG_DIST_NAME = $(BASE_NAME)_$(PKG_VERS)_DEV_$(PKG_DATE)_linux_x86_64.$(PKG_EXT)
+PKG_DIST_NAME = $(BASE_NAME)_$(PKG_VERS)_PUBLIC_$(PKG_DATE).$(PKG_EXT)
 PKG_DIST_SITE = https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_$(PKG_VERS)_build
-PKG_DIR = $(BASE_NAME)_$(PKG_VERS)_DEV
+PKG_DIR = $(BASE_NAME)_$(PKG_VERS)_PUBLIC
 
 REQUIRED_MIN_DSM = 7.0
 

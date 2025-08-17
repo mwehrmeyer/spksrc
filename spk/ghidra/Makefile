@@ -4,7 +4,7 @@ SPK_REV = 1
 SPK_ICON = src/ghidra.png
 
 DEPENDS = cross/ghidra
-SPK_DEPENDS = "java-17-openjdk"
+SPK_DEPENDS = "java-21-openjdk"
 
 MAINTAINER = This fucking guy
 DISPLAY_NAME = Ghidra Server
